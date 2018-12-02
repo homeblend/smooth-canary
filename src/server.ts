@@ -12,6 +12,5 @@ socketIOServer.on('connection', (socket: SocketIO.Socket) => {
   console.log("Received connection");
   socket.on('gas-volatility', (data) => {
     console.log("Handling Gas Volatility Message");
-    console.log(data);
   });
 });
