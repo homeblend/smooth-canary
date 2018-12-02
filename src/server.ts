@@ -5,10 +5,10 @@ const app = express();
 const server = new http.Server(app);
 // initialize socketIO
 const socketIOServer = socketIO(server);
-server.listen(8000);
+server.listen(8080);
 
 socketIOServer.on('connection', (socket: SocketIO.Socket) => {
-  socket.on('gas-volatility', (data) => {
+  socket.on('gas-volatility', (data: any) => {
     console.log(data);
   });
 });
