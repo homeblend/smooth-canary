@@ -2,9 +2,9 @@
   "name": "smooth-canary",
   "version": "1.0.0",
   "description": "Homeblend module for detecting harmful gasses",
-  "main": "dist/main.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "tsc && node dist/main.js"
+    "start": "tsc && node dist/server.js"
   },
   "repository": {
     "type": "git",
