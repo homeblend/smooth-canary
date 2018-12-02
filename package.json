@@ -1,1 +1,31 @@
-
+{
+  "name": "smooth-canary",
+  "version": "1.0.0",
+  "description": "Homeblend module for detecting harmful gasses",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homeblend/smooth-canary.git"
+  },
+  "author": "willwsharp",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/homeblend/smooth-canary/issues"
+  },
+  "homepage": "https://github.com/homeblend/smooth-canary#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "tslint": "^5.11.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.0",
+    "@types/node": "^10.12.11",
+    "@types/socket.io-client": "^1.4.32",
+    "typescript": "^3.2.1"
+  }
+}
