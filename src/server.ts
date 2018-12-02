@@ -5,10 +5,13 @@ const app = express();
 const server = new http.Server(app);
 // initialize socketIO
 const socketIOServer = socketIO(server);
-server.listen(8000);
+server.listen(8080);
 
+console.log("smooth-canary started");
 socketIOServer.on('connection', (socket: SocketIO.Socket) => {
+  console.log("Received connection");
   socket.on('gas-volatility', (data) => {
+    console.log("Handling Gas Volatility Message");
     console.log(data);
   });
 });
