@@ -26,7 +26,8 @@ if (!isDefined(process.env.SERVER_PORT)) {
 	logger.info(`Server port was not specified in config file; using default of ${defaultPort}`);
 	process.env.SERVER_PORT = defaultPort;
 }
-server.listen(process.env.SERVER_PORT, defaultHostName);
+// casting hostname as any because there's a weird type error otherwise
+server.listen(process.env.SERVER_PORT, process.env.HOSTNAME as any);
 const address = server.address() as AddressInfo;
 const host = address.address;
 const port = address.port;
