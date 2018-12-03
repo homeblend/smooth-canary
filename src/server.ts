@@ -32,7 +32,7 @@ server.listen(process.env.SERVER_PORT, process.env.HOSTNAME as any, () => {
 	const addressInfo = server.address() as AddressInfo;
 	const host = addressInfo.address;
 	const port = addressInfo.port;
-	logger.info(`smooth-canary server started on ${host}:${port}`);
+	logger.info(`smooth-canary server started on http://${host}:${port}`);
 	socketIOServer.on('connection', (socket: SocketIO.Socket) => {
 		logger.info("A new client has connected");
 		socket.on('gas-volatility', (data) => {
