@@ -18,6 +18,7 @@
   "homepage": "https://github.com/homeblend/smooth-canary#readme",
   "dependencies": {
     "@types/express": "^4.16.0",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "socket.io": "^2.2.0",
     "tslint": "^5.11.0",
