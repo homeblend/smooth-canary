@@ -13,7 +13,7 @@ const logger = createLogger();
 const app = express();
 const server = new http.Server(app);
 // setting defaults
-const defaultHostName = "http://localhost";
+const defaultHostName = "localhost";
 const defaultPort = '8080';
 
 // initialize socketIO
@@ -27,18 +27,20 @@ if (!isDefined(process.env.SERVER_PORT)) {
 	process.env.SERVER_PORT = defaultPort;
 }
 // casting hostname as any because there's a weird type error otherwise
-server.listen(process.env.SERVER_PORT, process.env.HOSTNAME as any);
-const address = server.address() as AddressInfo;
-const host = address.address;
-const port = address.port;
-logger.info(`smooth-canary server started on ${host}:${port}`);
-socketIOServer.on('connection', (socket: SocketIO.Socket) => {
-	logger.info("A new client has connected");
-	socket.on('gas-volatility', (data) => {
-		logger.info("Handling Gas Volatility Message");
-		logger.info(data);
+server.listen(process.env.SERVER_PORT, process.env.HOSTNAME as any, () => {
+	// get server address information
+	const addressInfo = server.address() as AddressInfo;
+	const host = addressInfo.address;
+	const port = addressInfo.port;
+	logger.info(`smooth-canary server started on ${host}:${port}`);
+	socketIOServer.on('connection', (socket: SocketIO.Socket) => {
+		logger.info("A new client has connected");
+		socket.on('gas-volatility', (data) => {
+			logger.info("Handling Gas Volatility Message");
+			logger.info(JSON.stringify(data));
+		});
 	});
-});
-socketIOServer.on('close', (socket: SocketIO.Socket) => {
-	logger.info("A client has disconnected");
+	socketIOServer.on('close', (socket: SocketIO.Socket) => {
+		logger.info("A client has disconnected");
+	});
 });
