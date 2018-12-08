@@ -10,7 +10,8 @@
         "no-console": false,
         "trailing-comma": false,
         "object-literal-sort-keys": false,
-        "indent": false
+        "indent": false,
+        "interface-name": false
     },
     "rulesDirectory": []
 }

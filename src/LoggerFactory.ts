@@ -1,11 +1,12 @@
 import { TransformableInfo } from 'logform';
 import winston from 'winston';
 
-export default function createLogger() {
+export default function createLogger(source: string = "Default Source") {
     const logger = winston.createLogger({
         level: 'info',
         format: winston.format.combine(
             winston.format.timestamp(),
+            winston.format.label({label: source}),
             winston.format.printf((info: TransformableInfo) => {
                 return `${info.timestamp} ${info.level}: ${info.message}`;
             })
