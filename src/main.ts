@@ -5,5 +5,5 @@ const server = new SmoothCanaryServer({
 	host: DevEnvironment.HOST,
 	port: DevEnvironment.PORT,
 });
-
+server.init();
 server.start();
