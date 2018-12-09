@@ -9,7 +9,7 @@ import { ServerConfig } from "./interfaces/ServerConfig.interface";
 import createLogger from "./LoggerFactory";
 import { isDefined } from "./utils";
 
-const serviceAccount = require('../../serviceAccountKey.json');
+const serviceAccount = require('/etc/homeblend/service-account-key.json');
 
 export class SmoothCanaryServer {
     // node http server
@@ -76,9 +76,12 @@ export class SmoothCanaryServer {
     private initSocketListeners() {
         this.socketServer.on('connection', (socket: SocketIO.Socket) => {
             this.logger.info("A new socket client has connected");
-            socket.on('sensor-message', (message: SensorMessage) => {
-                this.logger.info("Received new sensor reading");
-                this.database.collection('readings').add(message);
+            socket.on('sensor-message', async (message: SensorMessage) => {
+                if (isDefined(message)) {
+                    this.logger.info("Received new sensor reading");
+                    const docRef = await this.database.collection('readings').add(message);
+                    this.logger.info(`Added new document with ID: ${docRef.id}`);
+                }
             });
         });
     }
