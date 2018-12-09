@@ -24,7 +24,7 @@ export class SmoothCanaryServer {
     constructor(private config: ServerConfig) { }
 
     public init(): void {
-        this.logger.info("Initializing Smooth Canary Server");
+        this.logger.info("Initializing Server");
         this.server = new http.Server(express());
         this.socketServer = socketIO(this.server);
         if (!isDefined(this.config.host)) {
