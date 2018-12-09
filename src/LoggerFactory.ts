@@ -8,7 +8,7 @@ export default function createLogger(source: string = "Default Source") {
             winston.format.timestamp(),
             winston.format.label({label: source}),
             winston.format.printf((info: TransformableInfo) => {
-                return `${info.timestamp} ${info.level}: ${info.message}`;
+                return `${info.label} ${info.timestamp} ${info.level}: ${info.message}`;
             })
         ),
         transports: [
