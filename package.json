@@ -10,7 +10,7 @@
     "url": "git+https://github.com/homeblend/smooth-canary.git"
   },
   "author": "willwsharp",
-  "license": "AGPL-3.0",
+  "license": "none",
   "bugs": {
     "url": "https://github.com/homeblend/smooth-canary/issues"
   },
