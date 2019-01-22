@@ -79,8 +79,12 @@ export class SmoothCanaryServer {
             socket.on('sensor-message', async (message: SensorMessage) => {
                 if (isDefined(message)) {
                     this.logger.info("Received new sensor reading");
-                    const docRef = await this.database.collection('readings').add(message);
-                    this.logger.info(`Added new document with ID: ${docRef.id}`);
+                    if (typeof message.reading === "number") {
+                        const docRef = await this.database.collection('readings').add(message);
+                        this.logger.info(`Added new document with ID: ${docRef.id}`);
+                    } else {
+                        this.logger.error("Received message with non-number reading value.  Discarding.");
+                    }
                 }
             });
         });
